@@ -37,16 +37,22 @@ class ConductorModel
                          ->fetch();
     }
     
-    public function registrar($data){
+    public function registrar($data)
+    {
         $data['password'] = md5($data['password']);
+        
         $this->db->insertInto($this->table, $data)
                  ->execute();
         
         return $this->response->SetResponse(true);
     }
     
-    public function actualizar($data, $id){
-        $data['password'] = md5($data['password']);
+    public function actualizar($data, $id)
+    {
+        if(isset($data['password'])){
+            $data['password'] = md5($data['password']);            
+        }
+        
         $this->db->update($this->table, $data, $id)
                  ->execute();
         
