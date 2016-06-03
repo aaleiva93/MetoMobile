@@ -59,6 +59,7 @@ class Conductor extends CI_Controller {
 	}
     
     public function guardar(){
+        $errors = [];
         $id = $this->input->post('id');
         
         $data = [
@@ -69,22 +70,30 @@ class Conductor extends CI_Controller {
             'mobile' => $this->input->post('mobile'),
             'EsAdmin' => $this->input->post('EsAdmin'),
         ];
-        
-         /*$data = [
-            'fullname' => 'Aalejandro Leiva Alarcón',
-            'password' => '123456',
-            'correo' => 'aaleiva93@gmail.com',
-        ];*/
-        
-         if(empty($id)){
+         
+            try{
+            if(empty($id)){
                 $this->cm->registrar($data);
-                var_dump($data);
             } else{
                 if(empty($data['password'])) unset($data['password']);
                 $this->cm->actualizar($data, $id);
-            }           
-        
-                redirect('conductor');
+            }            
+        }catch(Exception $e){
+            if($e->getMessage() === RestApiErrorCode::UNPROCESSABLE_ENTITY){
+                $errors = RestApi::getEntityValidationFieldsError();
+            }
+        }
+
+        if(count($errors) === 0) redirect('conductor');
+        else {
+            $this->load->view('header', $this->user);
+            $this->load->view('conductor/validation', [
+                'errors' => $errors
+            ]);
+            $this->load->view('footer');
+        }
+       
+       
         
     }    
     

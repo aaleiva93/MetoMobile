@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-    <title>MetoTransMobile - Back Office</title>
+    <title>MetoTransWeb - Back Office</title>
     <link rel="shortcut icon" href="http://hearthstoneplayfun.xyz/appweb/Bandera_de_Barbanegra.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <meta charset="utf-8" />
@@ -29,7 +29,7 @@
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                                 </button>
-                                <a class="navbar-brand" href="<?php echo site_url('conductor'); ?>">MetoTransMobile</a>
+                                <a class="navbar-brand" href="<?php echo site_url('conductor'); ?>">MetoTransWeb</a>
                             </div>
 
                             <!-- Collect the nav links, forms, and other content for toggling -->
