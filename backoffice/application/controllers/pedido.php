@@ -27,7 +27,7 @@ class Pedido extends CI_Controller {
             $total  = $result->total;
             $data   = $result->data;
         } catch(Exception $e){
-            var_dump($e);
+             redirect('');
         }
 
         $this->pagination->initialize(

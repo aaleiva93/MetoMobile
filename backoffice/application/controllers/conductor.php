@@ -27,7 +27,8 @@ class Conductor extends CI_Controller {
             $total  = $result->total;
             $data   = $result->data;
         } catch(Exception $e){
-            var_dump($e);
+            
+            redirect('');
         }
 
         $this->pagination->initialize(
@@ -49,8 +50,11 @@ class Conductor extends CI_Controller {
 	public function crud($id = 0){
         $data = null;
         
+        try{
         if($id > 0) $data = $this->cm->obtener($id);
-        
+        } catch(Exception $e){
+            redirect('');
+        }
 		$this->load->view('header', $this->user);
         $this->load->view('conductor/crud', [
             'model' => $data
