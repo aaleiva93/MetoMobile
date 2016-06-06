@@ -11,6 +11,11 @@ $app->group('/pedidos/', function () {
                    ->write(json_encode($this->model->pedidos->listar($args['l'], $args['p'])));
     });
     
+    $this->get('listarPorConductor/{id_conductor}', function ($req, $res, $args) {
+        return $res->withHeader('Content-type', 'application/json')
+                   ->write(json_encode($this->model->pedidos->listarPorConductor($args['id_conductor'])));
+    });
+    
     $this->get('obtener/{id}', function ($req, $res, $args) {
        return $res->withHeader('Content-type', 'application/json')
                    ->write(json_encode($this->model->pedidos->obtener($args['id'])));

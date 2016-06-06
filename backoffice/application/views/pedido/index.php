@@ -26,7 +26,7 @@
             <td><?php echo $m->estado; ?></td>
             <td><?php echo $m->fechac; ?></td>
             <td><?php echo $m->fechad; ?></td>
-            <td><?php echo $m->id_conductor; ?></td>
+            <td><?php echo $m->fullname; ?></td>
             <td class="text-center">
                 <a class="btn btn-xs btn-block btn-success" href="<?php echo site_url('incidencia/ver/'. $m->id_incidencia); ?>">
                     Ver

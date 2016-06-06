@@ -6,7 +6,7 @@ use App\Lib\Response;
 class PedidosModel
 {
     private $db;
-    private $table = 'pedidos';
+    private $table = 'v_pedidos';
     private $response;
     
     public function __CONSTRUCT($db){
@@ -30,6 +30,15 @@ class PedidosModel
             'data'  => $data,
             'total' => $total
         ];
+    }
+    
+     public function listarPorConductor($id_conductor) {
+        return $this->db->from($this->table)
+                         ->where('id_conductor', $id_conductor)                    
+                         ->orderBy('id DESC')
+                         ->fetchAll();
+        
+
     }
     
     public function obtener($id){
