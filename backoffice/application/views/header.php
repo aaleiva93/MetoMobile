@@ -39,9 +39,10 @@
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pedidos <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
+                                            <li><a href="<?php echo site_url('pedido/crud/'); ?>">Crear</a></li>
                                             <li><a href="<?php echo site_url('pedido'); ?>">Entregados</a></li>
                                             <li><a href="<?php echo site_url('pedido'); ?>">Pendientes</a></li>
-                                            <li><a href="<?php echo site_url('pedido'); ?>">Anulados</a></li>
+                                            <li><a href="<?php echo site_url('pedido'); ?>">Anulados</a></li> 
                                         </ul>                                      
                                 </ul>
                                 <ul class="nav navbar-nav navbar-right">

@@ -1,11 +1,11 @@
 <div class="user-dashboard">
     <img src="assets/images/default-user.png" class="avatar" />
-    Bienvenido <b>{{ usuario }}</b>, desde aquí usted podrá gestionar sus pedidos.
+    Bienvenido <b>{{ usuario }}</b>
     <div class="clear"></div>
 </div>
 
 <div class="card">
-    <a class="btn btn-block btn-primary remove-border-radius" href="#/pedidos/registrar">Nuevo pedido</a>
+    <!--<a class="btn btn-block btn-primary remove-border-radius" href="#/pedidos/registrar">Nuevo pedido</a>-->
     <ul class="table-view">
         <li class="table-view-cell" ng-repeat="m in model">
             <a class="navigate-right" href="#/pedidos/visualizar/{{ m.id }}">
