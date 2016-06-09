@@ -7,7 +7,12 @@
 </h1>
 
 <ol class="breadcrumb">
-  <li class="active">Pedidos</li>
+  <li>
+        <a href="<?php echo site_url('pedido'); ?>">Pedidos</a>
+    </li>
+    <li class="active">
+        Pendientes
+    </li>
 </ol>
 
 <table class="table table-striped table-bordered">
@@ -23,7 +28,9 @@
         </tr>
     </thead>
     <tbody>
+        
         <?php foreach($model as $m): ?>
+        <?php if($m->estado_id === '0'){ ?>
         <tr>
             <td><?php echo $m->num_pedido; ?></td>
             <td><?php echo $m->descripcion; ?></td>
@@ -37,8 +44,8 @@
                 </a>
             </td>
         </tr>
+        <?php } ?>
         <?php endforeach; ?>
     </tbody>
 </table>
-
 <?php echo $this->pagination->create_links(); ?>

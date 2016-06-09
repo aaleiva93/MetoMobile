@@ -7,6 +7,20 @@ class PedidoModel extends CI_Model{
         );
     }
     
+    public function listarPorEmpleado($id){
+        return RestApi::call(
+            RestApiMethod::GET,
+            "pedidos/listarPorEmpleado/$id"
+        );
+    }
+    
+    public function listarTodos(){
+        return RestApi::call(
+            RestApiMethod::GET,
+            "pedidos/listarTodos"
+        );
+    }
+    
     public function obtener($id){
         return RestApi::call(
             RestApiMethod::GET,

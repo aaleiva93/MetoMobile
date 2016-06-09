@@ -11,6 +11,7 @@ class Pedido extends CI_Controller {
         if($this->user['user'] === null) redirect('');
         
         $this->load->model('PedidoModel', 'pm');
+        $this->load->model('ConductorModel', 'cm');
     }
     
 	public function index($p = 0){
@@ -46,18 +47,89 @@ class Pedido extends CI_Controller {
         $this->load->view('footer');
 	}
     
-    public function crud($id = 0){
+    public function crud($id = 0, $p = 0){
+         //Variables para paginar
+        $limite = 10;
+        $data = [];
+        $total  = 0;
+        
         $data = null;
+        $data2 = $this->cm->listarTodos();
         
         try{
-        if($id > 0) $data = $this->cm->obtener($id);
+        if($id > 0) $data = $this->pm->obtener($id);
         } catch(Exception $e){
             redirect('');
         }
 		$this->load->view('header', $this->user);
         $this->load->view('pedido/crud', [
+            'model' => $data,
+            'modelconductor' => $data2
+            
+        ]);
+        $this->load->view('footer');
+	}
+    
+     public function entregados(){
+	 //header
+		$this->load->view('header', $this->user);
+        $data = [];
+        
+        try{
+            $data = $this->pm->listarTodos();
+            
+        } catch(Exception $e){
+             redirect('');
+        }
+
+
+        $this->load->view('pedido/entregados', [
             'model' => $data
         ]);
+        
+        //footer
+        $this->load->view('footer');
+	}
+    
+       public function pendientes(){
+	 //header
+		$this->load->view('header', $this->user);
+        $data = [];
+        
+        try{
+            $data = $this->pm->listarTodos();
+            
+        } catch(Exception $e){
+             redirect('');
+        }
+
+
+        $this->load->view('pedido/pendientes', [
+            'model' => $data
+        ]);
+        
+        //footer
+        $this->load->view('footer');
+	}
+    
+      public function anulados(){
+	 //header
+		$this->load->view('header', $this->user);
+        $data = [];
+        
+        try{
+            $data = $this->pm->listarTodos();
+            
+        } catch(Exception $e){
+             redirect('');
+        }
+
+
+        $this->load->view('pedido/anulados', [
+            'model' => $data
+        ]);
+        
+        //footer
         $this->load->view('footer');
 	}
     
@@ -66,19 +138,16 @@ class Pedido extends CI_Controller {
         $id = $this->input->post('id');
         
         $data = [
-            'fullname' => $this->input->post('fullname'),
-            'username' => $this->input->post('username'),
-            'password' => $this->input->post('password'),
-            'correo' => $this->input->post('correo'),
-            'mobile' => $this->input->post('mobile'),
-            'EsAdmin' => $this->input->post('EsAdmin'),
+            'num_pedido' => $this->input->post('num_pedido'),
+            'id_conductor' => $this->input->post('id_conductor'),
+            'descripcion' => $this->input->post('descripcion'),
         ];
          
             try{
             if(empty($id)){
-                $this->cm->registrar($data);
+                $this->pm->registrar($data);
             } else{
-                $this->cm->actualizar($data, $id);
+                $this->pm->actualizar($data, $id);
             }            
         }catch(Exception $e){
             if($e->getMessage() === RestApiErrorCode::UNPROCESSABLE_ENTITY){

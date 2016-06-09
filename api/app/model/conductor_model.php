@@ -32,6 +32,12 @@ class ConductorModel
         ];
     }
     
+    public function listarTodos() {
+        return $this->db->from($this->table)
+                         ->orderBy('id DESC')
+                         ->fetchAll();
+    }
+    
     public function obtener($id){
         return $this->db->from($this->table, $id)
                          ->fetch();

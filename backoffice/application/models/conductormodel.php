@@ -14,6 +14,13 @@ class ConductorModel extends CI_Model{
         );
     }
     
+    public function listarTodos(){
+        return RestApi::call(
+            RestApiMethod::GET,
+            "conductor/listarTodos"
+        );
+    }
+    
     public function registrar($data){
         return RestApi::call(
             RestApiMethod::POST,

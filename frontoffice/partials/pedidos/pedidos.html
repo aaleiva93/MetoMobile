@@ -5,14 +5,13 @@
 </div>
 
 <div class="card">
-    <!--<a class="btn btn-block btn-primary remove-border-radius" href="#/pedidos/registrar">Nuevo pedido</a>-->
     <ul class="table-view">
         <li class="table-view-cell" ng-repeat="m in model">
             <a class="navigate-right" href="#/pedidos/visualizar/{{ m.id }}">
                 <span ng-if="m.estado_id == 0" class="pedido-estado pedido-estado-pendiente pull-left"></span>
                 <span ng-if="m.estado_id == 1" class="pedido-estado pedido-estado-finalizado pull-left"></span>
                 <span ng-if="m.estado_id == 2" class="pedido-estado pedido-estado-anulado pull-left"></span>
-                <b>Pedido #{{ m.id }} - {{ m.descripcion }}</b>
+                <b>Pedido #{{ m.num_pedido }} - {{ m.descripcion }}</b>
             </a>
         </li>
     </ul>

@@ -27,18 +27,24 @@
 
 <div class="form-group">
     <label>Numero de pedido</label>
-    <input type="text" name="fullname" class="form-control" placeholder="Ingrese conductor" value="<?php echo is_object($model) ? $model->num_pedido : ''; ?>">
+    <input type="text" name="num_pedido" class="form-control" placeholder="Ingrese numero de pedido" value="<?php echo is_object($model) ? $model->num_pedido : ''; ?>">
 </div>
 
 <div class="form-group">
     <label>Conductor</label>
-    <input type="text" name="fullname" class="form-control" placeholder="Ingrese conductor" value="<?php echo is_object($model) ? $model->fullname : ''; ?>">
+    <select name="id_conductor" class="form-control">
+        <?php foreach($modelconductor as $m): ?>
+        <option value="<?php echo $m->id ?>"><?php echo $m->fullname ?></option>
+        <?php endforeach; ?>
+    </select>
 </div>
 
 <div class="form-group">
     <label>Descripción</label>
-    <textarea type="text" name="descripcion" class="form-control" placeholder="Ingrese una descripción" value="<?php echo is_object($model) ? $model->descripcion : ''; ?>"></textarea>
+    <input  type="text" name="descripcion" class="form-control" placeholder="Ingrese una descripción" value="<?php echo is_object($model) ? $model->descripcion : ''; ?>">
 </div>
+
+
 
 <button class="btn btn-primary" type="submit">
     Enviar

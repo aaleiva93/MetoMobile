@@ -11,6 +11,11 @@ $app->group('/conductor/', function () {
                    ->write(json_encode($this->model->conductor->listar($args['l'], $args['p'])));
     });
     
+    $this->get('listarTodos', function ($req, $res, $args) {
+        return $res->withHeader('Content-type', 'application/json')
+                   ->write(json_encode($this->model->conductor->listarTodos()));
+    });
+    
     $this->get('obtener/{id}', function ($req, $res, $args) {
        return $res->withHeader('Content-type', 'application/json')
                    ->write(json_encode($this->model->conductor->obtener($args['id'])));

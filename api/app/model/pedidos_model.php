@@ -18,7 +18,7 @@ class PedidosModel
         $data = $this->db->from($this->table)
                          ->limit($l)
                          ->offset($p)
-                         ->orderBy('id DESC')
+                         ->orderBy('id')
                          ->fetchAll();
         
         $total = $this->db->from($this->table)
@@ -30,6 +30,12 @@ class PedidosModel
             'data'  => $data,
             'total' => $total
         ];
+    }
+    
+    public function listarTodos() {
+        return $this->db->from($this->table)
+                         ->orderBy('estado_id')
+                         ->fetchAll();
     }
     
      public function listarPorConductor($id_conductor) {
