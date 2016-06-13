@@ -166,6 +166,11 @@ class Pedido extends CI_Controller {
        
        
         
-    }  
+    }
+    
+    public function eliminar($id){
+        $this->pm->eliminar($id);
+        redirect('pedido');
+    }
     
 }

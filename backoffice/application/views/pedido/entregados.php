@@ -25,6 +25,7 @@
             <th>Fecha Descarga</th>
             <th>Conductor</th>
             <th>Incidencias</th>
+            <th style="width:160px;"></th>
         </tr>
     </thead>
     <tbody>
@@ -39,8 +40,16 @@
             <td><?php echo $m->fechad; ?></td>
             <td><?php echo $m->fullname; ?></td>
             <td class="text-center">
-                <a class="btn btn-xs btn-block btn-success" href="<?php echo site_url('incidencia/ver/'. $m->id_incidencia); ?>">
+                <a class="btn btn-xs btn-block btn-success" href="<?php echo site_url('incidencias/ver/'. $m->id); ?>">
                     Ver
+                </a>
+            </td>
+             <td class="text-center">
+                <a class="btn btn-xs btn-success" href="<?php echo site_url('pedido/crud/' . $m->id); ?>">
+                    Editar
+                </a>
+                <a class="btn btn-xs btn-danger" href="<?php echo site_url('pedido/eliminar/' . $m->id); ?>" onclick="return confirm('¿Esta seguro de eliminar este pedido?');">
+                    Eliminar
                 </a>
             </td>
         </tr>

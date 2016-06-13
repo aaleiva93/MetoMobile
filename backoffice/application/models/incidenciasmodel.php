@@ -1,30 +1,30 @@
 <?php
-class PedidoModel extends CI_Model{
-    public function listar($l = 10, $p = 0){
+class IncidenciasModel extends CI_Model{
+    public function listar(){
         return RestApi::call(
             RestApiMethod::GET,
-            "pedidos/listar/$l/$p"
-        );
-    }
-     
-    public function listarTodos(){
-        return RestApi::call(
-            RestApiMethod::GET,
-            "pedidos/listarTodos"
+            "incidencia/listar"
         );
     }
     
     public function obtener($id){
         return RestApi::call(
             RestApiMethod::GET,
-            "pedidos/obtener/$id"
+            "incidencia/obtener/$id"
+        );
+    }
+    
+     public function listarPorPedido($id){
+        return RestApi::call(
+            RestApiMethod::GET,
+            "incidencia/listarPorPedido/$id"
         );
     }
     
     public function registrar($data){
         return RestApi::call(
             RestApiMethod::POST,
-            "pedidos/registrar",
+            "incidencia/registrar",
             $data
         );
     }
@@ -32,7 +32,7 @@ class PedidoModel extends CI_Model{
     public function actualizar($data, $id){
         return RestApi::call(
             RestApiMethod::PUT,
-            "pedidos/actualizar/$id",
+            "incidencia/actualizar/$id",
             $data
         );
     }
@@ -40,7 +40,7 @@ class PedidoModel extends CI_Model{
     public function eliminar($id){
         return RestApi::call(
             RestApiMethod::DELETE,
-            "pedidos/eliminar/$id"
+            "incidencia/eliminar/$id"
         );
     }
 }

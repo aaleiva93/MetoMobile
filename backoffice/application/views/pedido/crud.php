@@ -4,7 +4,6 @@
     
     if(is_object($model)){
         $titulo = $model->fullname;
-        $esAdmin = ($model->EsAdmin === '1');
     }
 ?>
 

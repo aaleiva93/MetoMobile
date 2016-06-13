@@ -67,7 +67,7 @@ class PedidosModel
     }
     
     public function eliminar($id){
-        $this->db->deleteFrom($this->table, $id)
+        $this->db->deleteFrom('pedidos', $id)
                  ->execute();
         
         return $this->response->SetResponse(true);

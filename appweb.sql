@@ -13,12 +13,10 @@
 
 
 -- Volcando estructura de base de datos para appweb
-DROP DATABASE IF EXISTS `appweb`;
 CREATE DATABASE IF NOT EXISTS `appweb` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `appweb`;
 
 -- Volcando estructura para tabla appweb.conductor
-DROP TABLE IF EXISTS `conductor`;
 CREATE TABLE IF NOT EXISTS `conductor` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fullname` varchar(500) DEFAULT '0',
@@ -31,8 +29,7 @@ CREATE TABLE IF NOT EXISTS `conductor` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=224 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla appweb.conductor: ~28 rows (aproximadamente)
-DELETE FROM `conductor`;
+-- Volcando datos para la tabla appweb.conductor: ~27 rows (aproximadamente)
 /*!40000 ALTER TABLE `conductor` DISABLE KEYS */;
 INSERT INTO `conductor` (`id`, `fullname`, `EsAdmin`, `username`, `correo`, `mobile`, `password`, `matricula`) VALUES
 	(5, 'Francis Martin', 0, 'Castor', 'a@consequat.ca', '1', 'd41d8cd98f00b204e9800998ecf8427e', 0),
@@ -65,124 +62,61 @@ INSERT INTO `conductor` (`id`, `fullname`, `EsAdmin`, `username`, `correo`, `mob
 /*!40000 ALTER TABLE `conductor` ENABLE KEYS */;
 
 -- Volcando estructura para tabla appweb.incidencia
-DROP TABLE IF EXISTS `incidencia`;
 CREATE TABLE IF NOT EXISTS `incidencia` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nincidencia` varchar(500) DEFAULT NULL,
+  `num_incidencia` varchar(500) DEFAULT NULL,
+  `imagen` text,
   `descripcion` varchar(500) DEFAULT NULL,
   `fecha` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `id_pedido` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_incidencia_pedidos` (`id_pedido`),
+  CONSTRAINT `FK_incidencia_pedidos` FOREIGN KEY (`id_pedido`) REFERENCES `pedidos` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla appweb.incidencia: ~101 rows (aproximadamente)
-DELETE FROM `incidencia`;
+-- Volcando datos para la tabla appweb.incidencia: ~21 rows (aproximadamente)
 /*!40000 ALTER TABLE `incidencia` DISABLE KEYS */;
-INSERT INTO `incidencia` (`id`, `nincidencia`, `descripcion`, `fecha`) VALUES
-	(1, NULL, 'pale roto\r\n', '2016-05-18'),
-	(2, NULL, 'Donec egestas. Duis ac arcu. Nunc mauris. Morbi non sapien', '2020-03-17'),
-	(3, NULL, 'pede. Suspendisse dui. Fusce diam nunc, ullamcorper eu, euismod ac,', '2019-06-15'),
-	(4, NULL, 'consequat enim diam vel arcu. Curabitur ut odio vel est', '2011-09-16'),
-	(5, NULL, 'aliquam iaculis, lacus pede sagittis augue, eu tempor erat neque', '2003-08-16'),
-	(6, NULL, 'ipsum cursus vestibulum. Mauris magna. Duis dignissim tempor arcu. Vestibulum', '2007-05-16'),
-	(7, NULL, 'magna a tortor. Nunc commodo auctor velit. Aliquam nisl. Nulla', '2015-09-16'),
-	(8, NULL, 'Cras vehicula aliquet libero. Integer in magna. Phasellus dolor elit,', '2024-12-16'),
-	(9, NULL, 'ut, molestie in, tempus eu, ligula. Aenean euismod mauris eu', '2031-10-15'),
-	(10, NULL, 'Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate,', '2025-07-16'),
-	(11, NULL, 'sed dolor. Fusce mi lorem, vehicula et, rutrum eu, ultrices', '2008-05-17'),
-	(12, NULL, 'est, mollis non, cursus non, egestas a, dui. Cras pellentesque.', '2028-03-17'),
-	(13, NULL, 'Suspendisse non leo. Vivamus nibh dolor, nonummy ac, feugiat non,', '2017-07-15'),
-	(14, NULL, 'diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer', '2009-05-17'),
-	(15, NULL, 'auctor vitae, aliquet nec, imperdiet nec, leo. Morbi neque tellus,', '2008-02-16'),
-	(16, NULL, 'cursus. Nunc mauris elit, dictum eu, eleifend nec, malesuada ut,', '2011-09-15'),
-	(17, NULL, 'consectetuer euismod est arcu ac orci. Ut semper pretium neque.', '2015-09-15'),
-	(18, NULL, 'id, blandit at, nisi. Cum sociis natoque penatibus et magnis', '2029-04-17'),
-	(19, NULL, 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames', '2003-01-16'),
-	(20, NULL, 'vel arcu eu odio tristique pharetra. Quisque ac libero nec', '2022-11-15'),
-	(21, NULL, 'massa. Quisque porttitor eros nec tellus. Nunc lectus pede, ultrices', '2016-11-16'),
-	(22, NULL, 'tempor lorem, eget mollis lectus pede et risus. Quisque libero', '2024-02-16'),
-	(23, NULL, 'nisi nibh lacinia orci, consectetuer euismod est arcu ac orci.', '2023-01-16'),
-	(24, NULL, 'Aenean euismod mauris eu elit. Nulla facilisi. Sed neque. Sed', '2009-08-15'),
-	(25, NULL, 'tempor diam dictum sapien. Aenean massa. Integer vitae nibh. Donec', '2029-10-15'),
-	(26, NULL, 'viverra. Donec tempus, lorem fringilla ornare placerat, orci lacus vestibulum', '2022-11-16'),
-	(27, NULL, 'varius ultrices, mauris ipsum porta elit, a feugiat tellus lorem', '2021-03-17'),
-	(28, NULL, 'sit amet, risus. Donec nibh enim, gravida sit amet, dapibus', '2015-09-16'),
-	(29, NULL, 'mauris. Suspendisse aliquet molestie tellus. Aenean egestas hendrerit neque. In', '2027-07-16'),
-	(30, NULL, 'Donec vitae erat vel pede blandit congue. In scelerisque scelerisque', '2012-11-16'),
-	(31, NULL, 'quam dignissim pharetra. Nam ac nulla. In tincidunt congue turpis.', '2025-07-16'),
-	(32, NULL, 'amet massa. Quisque porttitor eros nec tellus. Nunc lectus pede,', '2015-06-15'),
-	(33, NULL, 'Etiam bibendum fermentum metus. Aenean sed pede nec ante blandit', '2011-08-16'),
-	(34, NULL, 'commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies', '2024-07-15'),
-	(35, NULL, 'mus. Donec dignissim magna a tortor. Nunc commodo auctor velit.', '2012-09-16'),
-	(36, NULL, 'eleifend egestas. Sed pharetra, felis eget varius ultrices, mauris ipsum', '2024-03-16'),
-	(37, NULL, 'Nunc mauris. Morbi non sapien molestie orci tincidunt adipiscing. Mauris', '2007-09-15'),
-	(38, NULL, 'Nunc ut erat. Sed nunc est, mollis non, cursus non,', '2002-02-17'),
-	(39, NULL, 'Donec fringilla. Donec feugiat metus sit amet ante. Vivamus non', '2004-09-16'),
-	(40, NULL, 'enim commodo hendrerit. Donec porttitor tellus non magna. Nam ligula', '2012-06-16'),
-	(41, NULL, 'et magnis dis parturient montes, nascetur ridiculus mus. Proin vel', '2024-07-15'),
-	(42, NULL, 'egestas. Aliquam nec enim. Nunc ut erat. Sed nunc est,', '2023-10-16'),
-	(43, NULL, 'Curabitur ut odio vel est tempor bibendum. Donec felis orci,', '2010-07-16'),
-	(44, NULL, 'In lorem. Donec elementum, lorem ut aliquam iaculis, lacus pede', '2006-12-15'),
-	(45, NULL, 'Nam porttitor scelerisque neque. Nullam nisl. Maecenas malesuada fringilla est.', '2003-02-16'),
-	(46, NULL, 'nec, malesuada ut, sem. Nulla interdum. Curabitur dictum. Phasellus in', '2012-06-15'),
-	(47, NULL, 'Suspendisse dui. Fusce diam nunc, ullamcorper eu, euismod ac, fermentum', '2006-09-15'),
-	(48, NULL, 'tincidunt pede ac urna. Ut tincidunt vehicula risus. Nulla eget', '2010-12-16'),
-	(49, NULL, 'arcu. Curabitur ut odio vel est tempor bibendum. Donec felis', '2023-05-16'),
-	(50, NULL, 'gravida sit amet, dapibus id, blandit at, nisi. Cum sociis', '2011-11-16'),
-	(51, NULL, 'massa lobortis ultrices. Vivamus rhoncus. Donec est. Nunc ullamcorper, velit', '2001-04-17'),
-	(52, NULL, 'sit amet lorem semper auctor. Mauris vel turpis. Aliquam adipiscing', '2023-03-16'),
-	(53, NULL, 'lacus. Aliquam rutrum lorem ac risus. Morbi metus. Vivamus euismod', '2001-12-16'),
-	(54, NULL, 'volutpat ornare, facilisis eget, ipsum. Donec sollicitudin adipiscing ligula. Aenean', '2021-11-16'),
-	(55, NULL, 'lorem ac risus. Morbi metus. Vivamus euismod urna. Nullam lobortis', '2019-11-15'),
-	(56, NULL, 'auctor velit. Aliquam nisl. Nulla eu neque pellentesque massa lobortis', '2018-05-17'),
-	(57, NULL, 'vel quam dignissim pharetra. Nam ac nulla. In tincidunt congue', '2018-01-17'),
-	(58, NULL, 'felis eget varius ultrices, mauris ipsum porta elit, a feugiat', '2005-03-17'),
-	(59, NULL, 'eu nibh vulputate mauris sagittis placerat. Cras dictum ultricies ligula.', '2025-08-16'),
-	(60, NULL, 'varius et, euismod et, commodo at, libero. Morbi accumsan laoreet', '2016-05-16'),
-	(61, NULL, 'nunc nulla vulputate dui, nec tempus mauris erat eget ipsum.', '2011-08-16'),
-	(62, NULL, 'tortor. Integer aliquam adipiscing lacus. Ut nec urna et arcu', '2013-06-15'),
-	(63, NULL, 'ornare, lectus ante dictum mi, ac mattis velit justo nec', '2011-09-15'),
-	(64, NULL, 'magna, malesuada vel, convallis in, cursus et, eros. Proin ultrices.', '2002-04-16'),
-	(65, NULL, 'feugiat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam', '2024-08-15'),
-	(66, NULL, 'dignissim tempor arcu. Vestibulum ut eros non enim commodo hendrerit.', '2018-07-16'),
-	(67, NULL, 'eros nec tellus. Nunc lectus pede, ultrices a, auctor non,', '2030-01-16'),
-	(68, NULL, 'iaculis aliquet diam. Sed diam lorem, auctor quis, tristique ac,', '2020-02-16'),
-	(69, NULL, 'laoreet lectus quis massa. Mauris vestibulum, neque sed dictum eleifend,', '2010-05-16'),
-	(70, NULL, 'eu tempor erat neque non quam. Pellentesque habitant morbi tristique', '2014-03-16'),
-	(71, NULL, 'Donec consectetuer mauris id sapien. Cras dolor dolor, tempus non,', '2018-03-17'),
-	(72, NULL, 'Vestibulum ut eros non enim commodo hendrerit. Donec porttitor tellus', '2008-04-16'),
-	(73, NULL, 'tempor augue ac ipsum. Phasellus vitae mauris sit amet lorem', '2008-02-17'),
-	(74, NULL, 'non, cursus non, egestas a, dui. Cras pellentesque. Sed dictum.', '2018-01-17'),
-	(75, NULL, 'posuere vulputate, lacus. Cras interdum. Nunc sollicitudin commodo ipsum. Suspendisse', '2005-07-16'),
-	(76, NULL, 'sapien imperdiet ornare. In faucibus. Morbi vehicula. Pellentesque tincidunt tempus', '2031-01-17'),
-	(77, NULL, 'tempor diam dictum sapien. Aenean massa. Integer vitae nibh. Donec', '2009-01-17'),
-	(78, NULL, 'non lorem vitae odio sagittis semper. Nam tempor diam dictum', '2014-03-16'),
-	(79, NULL, 'Cras eu tellus eu augue porttitor interdum. Sed auctor odio', '2030-07-15'),
-	(80, NULL, 'auctor velit. Aliquam nisl. Nulla eu neque pellentesque massa lobortis', '2007-09-15'),
-	(81, NULL, 'sapien molestie orci tincidunt adipiscing. Mauris molestie pharetra nibh. Aliquam', '2007-02-16'),
-	(82, NULL, 'dolor. Fusce feugiat. Lorem ipsum dolor sit amet, consectetuer adipiscing', '2022-04-16'),
-	(83, NULL, 'sagittis. Nullam vitae diam. Proin dolor. Nulla semper tellus id', '2015-01-17'),
-	(84, NULL, 'orci luctus et ultrices posuere cubilia Curae; Phasellus ornare. Fusce', '2029-08-15'),
-	(85, NULL, 'sem. Nulla interdum. Curabitur dictum. Phasellus in felis. Nulla tempor', '2016-01-17'),
-	(86, NULL, 'risus. In mi pede, nonummy ut, molestie in, tempus eu,', '2025-12-16'),
-	(87, NULL, 'pellentesque a, facilisis non, bibendum sed, est. Nunc laoreet lectus', '2012-03-16'),
-	(88, NULL, 'tellus faucibus leo, in lobortis tellus justo sit amet nulla.', '2003-01-16'),
-	(89, NULL, 'bibendum sed, est. Nunc laoreet lectus quis massa. Mauris vestibulum,', '2019-04-17'),
-	(90, NULL, 'lorem tristique aliquet. Phasellus fermentum convallis ligula. Donec luctus aliquet', '2001-01-16'),
-	(91, NULL, 'ullamcorper viverra. Maecenas iaculis aliquet diam. Sed diam lorem, auctor', '2012-01-17'),
-	(92, NULL, 'elit. Etiam laoreet, libero et tristique pellentesque, tellus sem mollis', '2026-12-16'),
-	(93, NULL, 'eu enim. Etiam imperdiet dictum magna. Ut tincidunt orci quis', '2021-07-16'),
-	(94, NULL, 'ipsum non arcu. Vivamus sit amet risus. Donec egestas. Aliquam', '2011-07-15'),
-	(95, NULL, 'nunc ac mattis ornare, lectus ante dictum mi, ac mattis', '2011-01-17'),
-	(96, NULL, 'aliquet lobortis, nisi nibh lacinia orci, consectetuer euismod est arcu', '2007-06-15'),
-	(97, NULL, 'Donec egestas. Aliquam nec enim. Nunc ut erat. Sed nunc', '2002-01-17'),
-	(98, NULL, 'facilisis non, bibendum sed, est. Nunc laoreet lectus quis massa.', '2022-05-15'),
-	(99, NULL, 'placerat velit. Quisque varius. Nam porttitor scelerisque neque. Nullam nisl.', '2029-05-16'),
-	(100, NULL, 'Quisque libero lacus, varius et, euismod et, commodo at, libero.', '2014-05-17'),
-	(101, NULL, 'aliquam adipiscing lacus. Ut nec urna et arcu imperdiet ullamcorper.', '2027-08-16');
+INSERT INTO `incidencia` (`id`, `num_incidencia`, `imagen`, `descripcion`, `fecha`, `id_pedido`) VALUES
+	(1, '44', NULL, 'pale roto\r\n', '2016-05-18', 98),
+	(2, '1111\r\n', NULL, 'Donec egestas. Duis ac arcu. Nunc mauris. Morbi non sapien', '2020-03-17', 98),
+	(3, NULL, 'data:image/jpeg;base64,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', 'pede. Suspendisse dui. Fusce diam nunc, ullamcorper eu, euismod ac,', '2019-06-15', 5),
+	(4, NULL, 'data:image/jpeg;base64,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', 'consequat enim diam vel arcu. Curabitur ut odio vel est', '2011-09-16', 5),
+	(5, NULL, 'data:image/jpeg;base64,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', 'aliquam iaculis, lacus pede sagittis augue, eu tempor erat neque', '2003-08-16', 5),
+	(6, NULL, NULL, 'ipsum cursus vestibulum. Mauris magna. Duis dignissim tempor arcu. Vestibulum', '2007-05-16', NULL),
+	(7, NULL, NULL, 'magna a tortor. Nunc commodo auctor velit. Aliquam nisl. Nulla', '2015-09-16', NULL),
+	(8, NULL, NULL, 'Cras vehicula aliquet libero. Integer in magna. Phasellus dolor elit,', '2024-12-16', NULL),
+	(9, NULL, NULL, 'ut, molestie in, tempus eu, ligula. Aenean euismod mauris eu', '2031-10-15', NULL),
+	(10, NULL, NULL, 'Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate,', '2025-07-16', NULL),
+	(11, NULL, NULL, 'sed dolor. Fusce mi lorem, vehicula et, rutrum eu, ultrices', '2008-05-17', NULL),
+	(12, NULL, NULL, 'est, mollis non, cursus non, egestas a, dui. Cras pellentesque.', '2028-03-17', NULL),
+	(13, NULL, NULL, 'Suspendisse non leo. Vivamus nibh dolor, nonummy ac, feugiat non,', '2017-07-15', NULL),
+	(14, NULL, NULL, 'diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer', '2009-05-17', NULL),
+	(15, NULL, NULL, 'auctor vitae, aliquet nec, imperdiet nec, leo. Morbi neque tellus,', '2008-02-16', NULL),
+	(16, NULL, NULL, 'cursus. Nunc mauris elit, dictum eu, eleifend nec, malesuada ut,', '2011-09-15', NULL),
+	(17, NULL, NULL, 'consectetuer euismod est arcu ac orci. Ut semper pretium neque.', '2015-09-15', NULL),
+	(18, NULL, NULL, 'id, blandit at, nisi. Cum sociis natoque penatibus et magnis', '2029-04-17', NULL),
+	(19, NULL, NULL, 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames', '2003-01-16', NULL),
+	(20, NULL, NULL, 'vel arcu eu odio tristique pharetra. Quisque ac libero nec', '2022-11-15', NULL),
+	(21, NULL, NULL, 'massa. Quisque porttitor eros nec tellus. Nunc lectus pede, ultrices', '2016-11-16', NULL);
 /*!40000 ALTER TABLE `incidencia` ENABLE KEYS */;
 
+-- Volcando estructura para tabla appweb.incidencia_imagen
+CREATE TABLE IF NOT EXISTS `incidencia_imagen` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_incidencia` int(11) DEFAULT NULL,
+  `imagen` text,
+  PRIMARY KEY (`id`),
+  KEY `FK_incidencia_imagen_incidencia` (`id_incidencia`),
+  CONSTRAINT `FK_incidencia_imagen_incidencia` FOREIGN KEY (`id_incidencia`) REFERENCES `incidencia` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla appweb.incidencia_imagen: ~1 rows (aproximadamente)
+/*!40000 ALTER TABLE `incidencia_imagen` DISABLE KEYS */;
+INSERT INTO `incidencia_imagen` (`id`, `id_incidencia`, `imagen`) VALUES
+	(1, 2, NULL);
+/*!40000 ALTER TABLE `incidencia_imagen` ENABLE KEYS */;
+
 -- Volcando estructura para tabla appweb.pedidos
-DROP TABLE IF EXISTS `pedidos`;
 CREATE TABLE IF NOT EXISTS `pedidos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `num_pedido` varchar(500) DEFAULT NULL,
@@ -190,7 +124,6 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
   `estado_id` tinyint(4) DEFAULT '0',
   `fechad` date DEFAULT NULL,
   `fechac` date DEFAULT NULL,
-  `id_foto` int(11) DEFAULT NULL,
   `id_conductor` int(11) DEFAULT NULL,
   `id_incidencia` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -198,25 +131,26 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
   KEY `FK_pedidos_incidencia` (`id_incidencia`),
   CONSTRAINT `FK_pedidos_conductor` FOREIGN KEY (`id_conductor`) REFERENCES `conductor` (`id`),
   CONSTRAINT `FK_pedidos_incidencia` FOREIGN KEY (`id_incidencia`) REFERENCES `incidencia` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla appweb.pedidos: ~9 rows (aproximadamente)
-DELETE FROM `pedidos`;
+-- Volcando datos para la tabla appweb.pedidos: ~12 rows (aproximadamente)
 /*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
-INSERT INTO `pedidos` (`id`, `num_pedido`, `descripcion`, `estado_id`, `fechad`, `fechac`, `id_foto`, `id_conductor`, `id_incidencia`) VALUES
-	(4, '11', 'chocolate', 0, NULL, NULL, NULL, 104, 1),
-	(5, '34', 'redbull', 0, NULL, NULL, NULL, 104, NULL),
-	(6, '186', 'aceitunas', 1, '2025-11-16', '2016-10-16', NULL, 104, NULL),
-	(7, '432', 'feugiat tellus lorem eu metus. In lorem. Donec elementum, lorem', 1, '2018-10-16', '2006-06-15', NULL, 175, NULL),
-	(8, '377', 'Cras vehicula aliquet libero. Integer in magna. Phasellus dolor elit,', 1, '2028-06-16', '2020-07-16', NULL, 196, NULL),
-	(9, '14', 'lavaropa', 2, '2011-01-16', '2002-02-16', NULL, 104, NULL),
-	(95, '70', 'sodales elit erat vitae risus. Duis a mi fringilla mi', 1, '2027-03-17', '2024-08-16', NULL, 196, NULL),
-	(96, '204', 'montes, nascetur ridiculus mus. Proin vel arcu eu odio tristique', 0, '2004-03-17', '2005-07-16', NULL, 202, NULL),
-	(97, '357', 'eu erat semper rutrum. Fusce dolor quam, elementum at, egestas', 1, '2009-10-16', '2011-07-16', NULL, 202, NULL);
+INSERT INTO `pedidos` (`id`, `num_pedido`, `descripcion`, `estado_id`, `fechad`, `fechac`, `id_conductor`, `id_incidencia`) VALUES
+	(4, '11', 'chocolate', 0, NULL, NULL, 223, 1),
+	(5, '34', 'redbull', 0, '2016-06-13', '2016-06-13', 104, 6),
+	(6, '186', 'aceitunas', 1, '2025-11-16', '2016-10-16', 104, 9),
+	(9, '14', 'lavaropa', 2, '2011-01-16', '2002-02-16', 104, 5),
+	(96, '204', 'montes, nascetur ridiculus mus. Proin vel arcu eu odio tristique', 2, '2004-03-17', '2005-07-16', 223, NULL),
+	(97, '357', 'eu erat semper rutrum. Fusce dolor quam, elementum at, egestas', 1, '2009-10-16', '2011-07-16', 223, NULL),
+	(98, '123456', 'jajajaja', 1, NULL, NULL, 215, NULL),
+	(99, '34343434343443343', '3434343434', 0, NULL, NULL, 209, NULL),
+	(101, 'dgdgdf', 'fgdg', 0, NULL, NULL, 223, NULL),
+	(103, 'ddasdas', 'asdasdasd', 0, NULL, NULL, 214, NULL),
+	(104, 'asddddddddddddddddddddddd', 'jejejejejjejeejje', 0, NULL, NULL, 184, 8),
+	(105, 'rege', 'reyteg', 0, NULL, NULL, 215, NULL);
 /*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
 
 -- Volcando estructura para tabla appweb.tabla_de_tablas
-DROP TABLE IF EXISTS `tabla_de_tablas`;
 CREATE TABLE IF NOT EXISTS `tabla_de_tablas` (
   `Relacion` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `id` int(11) NOT NULL,
@@ -225,7 +159,6 @@ CREATE TABLE IF NOT EXISTS `tabla_de_tablas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- Volcando datos para la tabla appweb.tabla_de_tablas: ~3 rows (aproximadamente)
-DELETE FROM `tabla_de_tablas`;
 /*!40000 ALTER TABLE `tabla_de_tablas` DISABLE KEYS */;
 INSERT INTO `tabla_de_tablas` (`Relacion`, `id`, `Valor`, `Orden`) VALUES
 	('pedido_estado', 0, 'Pendiente', 1),
@@ -233,8 +166,21 @@ INSERT INTO `tabla_de_tablas` (`Relacion`, `id`, `Valor`, `Orden`) VALUES
 	('pedido_estado', 2, 'Anulado', 3);
 /*!40000 ALTER TABLE `tabla_de_tablas` ENABLE KEYS */;
 
+-- Volcando estructura para vista appweb.v_incidencia
+-- Creando tabla temporal para superar errores de dependencia de VIEW
+CREATE TABLE `v_incidencia` (
+	`id` INT(11) NOT NULL,
+	`num_incidencia` VARCHAR(500) NULL COLLATE 'latin1_swedish_ci',
+	`imagen` TEXT NULL COLLATE 'latin1_swedish_ci',
+	`descripcion` VARCHAR(500) NULL COLLATE 'latin1_swedish_ci',
+	`fecha` DATE NULL,
+	`id_pedido` INT(11) NULL,
+	`num_pedido` VARCHAR(500) NULL COLLATE 'latin1_swedish_ci',
+	`fullname` VARCHAR(500) NULL COLLATE 'latin1_swedish_ci',
+	`estado` VARCHAR(50) NOT NULL COLLATE 'utf8_spanish_ci'
+) ENGINE=MyISAM;
+
 -- Volcando estructura para vista appweb.v_pedidos
-DROP VIEW IF EXISTS `v_pedidos`;
 -- Creando tabla temporal para superar errores de dependencia de VIEW
 CREATE TABLE `v_pedidos` (
 	`id` INT(11) NOT NULL,
@@ -243,18 +189,21 @@ CREATE TABLE `v_pedidos` (
 	`estado_id` TINYINT(4) NULL,
 	`fechad` DATE NULL,
 	`fechac` DATE NULL,
-	`id_foto` INT(11) NULL,
 	`id_conductor` INT(11) NULL,
 	`id_incidencia` INT(11) NULL,
-	`fullname` VARCHAR(500) NULL COLLATE 'latin1_swedish_ci',
-	`estado` VARCHAR(50) NOT NULL COLLATE 'utf8_spanish_ci'
+	`estado` VARCHAR(50) NOT NULL COLLATE 'utf8_spanish_ci',
+	`fullname` VARCHAR(500) NULL COLLATE 'latin1_swedish_ci'
 ) ENGINE=MyISAM;
 
+-- Volcando estructura para vista appweb.v_incidencia
+-- Eliminando tabla temporal y crear estructura final de VIEW
+DROP TABLE IF EXISTS `v_incidencia`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_incidencia` AS select `incidencia`.`id` AS `id`,`incidencia`.`num_incidencia` AS `num_incidencia`,`incidencia`.`imagen` AS `imagen`,`incidencia`.`descripcion` AS `descripcion`,`incidencia`.`fecha` AS `fecha`,`incidencia`.`id_pedido` AS `id_pedido`,`pedidos`.`num_pedido` AS `num_pedido`,`conductor`.`fullname` AS `fullname`,`tabla_de_tablas`.`Valor` AS `estado` from (((`pedidos` join `conductor` on((`conductor`.`id` = `pedidos`.`id_conductor`))) join `incidencia` on((`incidencia`.`id_pedido` = `pedidos`.`id`))) join `tabla_de_tablas` on((`tabla_de_tablas`.`id` = `pedidos`.`estado_id`)));
+
 -- Volcando estructura para vista appweb.v_pedidos
-DROP VIEW IF EXISTS `v_pedidos`;
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `v_pedidos`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_pedidos` AS select `pedidos`.`id` AS `id`,`pedidos`.`num_pedido` AS `num_pedido`,`pedidos`.`descripcion` AS `descripcion`,`pedidos`.`estado_id` AS `estado_id`,`pedidos`.`fechad` AS `fechad`,`pedidos`.`fechac` AS `fechac`,`pedidos`.`id_foto` AS `id_foto`,`pedidos`.`id_conductor` AS `id_conductor`,`pedidos`.`id_incidencia` AS `id_incidencia`,`conductor`.`fullname` AS `fullname`,`tabla_de_tablas`.`Valor` AS `estado` from ((`pedidos` join `conductor` on((`pedidos`.`id_conductor` = `conductor`.`id`))) join `tabla_de_tablas` on((`pedidos`.`estado_id` = `tabla_de_tablas`.`id`)));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_pedidos` AS select `pedidos`.`id` AS `id`,`pedidos`.`num_pedido` AS `num_pedido`,`pedidos`.`descripcion` AS `descripcion`,`pedidos`.`estado_id` AS `estado_id`,`pedidos`.`fechad` AS `fechad`,`pedidos`.`fechac` AS `fechac`,`pedidos`.`id_conductor` AS `id_conductor`,`pedidos`.`id_incidencia` AS `id_incidencia`,`tabla_de_tablas`.`Valor` AS `estado`,`conductor`.`fullname` AS `fullname` from ((`pedidos` join `conductor` on((`conductor`.`id` = `pedidos`.`id_conductor`))) join `tabla_de_tablas` on((`tabla_de_tablas`.`id` = `pedidos`.`estado_id`)));
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
