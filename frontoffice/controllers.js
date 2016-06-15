@@ -1,6 +1,7 @@
 var authControllers   = angular.module('authControllers', []),
-    pedidoControllers = angular.module('pedidoControllers', [])
-    testControllers   = angular.module('testControllers', []);
+    pedidoControllers = angular.module('pedidoControllers', []),
+    testControllers   = angular.module('testControllers', []),
+    camaraControllers = angular.module('camaraControllers', []);
 
 // Auth Controller
 authControllers.controller('AuthLoginCtrl', ['$scope', 'restApi', '$location', 'auth',
@@ -67,10 +68,114 @@ pedidoControllers.controller('PedidosListadoCtrl', ['$scope', 'restApi', 'auth',
 pedidoControllers.controller('PedidosRegistrarCtrl', ['$scope', '$http',
   function ($scope, $http) {
       
+      
+      
   }]);
 
-pedidoControllers.controller('PedidosVisualizarCtrl', ['$scope', '$http',
-  function ($scope, $http) {
+pedidoControllers.controller('PedidosVisualizarCtrl', ['$scope', 'restApi', '$location', '$routeParams',
+  function ($scope, restApi, $location, $routeParams ) {
+      
+      
+      inicializar();
+      
+      function inicializar(){
+          estados();
+      }
+      
+       function estados() {
+            restApi.call({
+                method: 'get',
+                url: 'pedidos/estados',
+                response: function (r) {
+                    $scope.estados = r;
+                    obtenerPedido();
+                },
+                error: function (r) {
+
+                },
+                validationError: function (r) {
+                    console.log(r);
+                }
+            });
+        }
+      
+      function obtenerPedido() {
+            restApi.call({
+                method: 'get',
+                url: 'pedidos/obtener/' + $routeParams.id,
+                response: function (r) {
+                    $scope.pedido = r;
+                    $scope.Estado = r.estado_id;
+                    obtenerIncidencia();
+                },
+                error: function (r) {
+
+                },
+                validationError: function (r) {
+                    console.log(r);
+                }
+            });
+        }
+      
+      function obtenerIncidencia() {
+            restApi.call({
+                method: 'get',
+                url: 'incidencia/listarPorPedido/' + $routeParams.id,
+                response: function (r) {
+                    $scope.model = r;
+                },
+                error: function (r) {
+
+                },
+                validationError: function (r) {
+                    console.log(r);
+                }
+            });
+        }
+      
+      $scope.actualizaEstado = function(){
+         restApi.call({
+                method: 'put',
+                url: 'pedidos/estados/' + $scope.pedido.id,
+                data: {
+                    estado_id: $scope.Estado
+                },
+                response: function (r) {
+                    if(r.response){
+                        $location.path('pedidos');
+                    }
+                },
+                error: function (r) {
+
+                },
+                validationError: function (r) {
+                    console.log(r);
+                }
+            });
+      }
+      
+      
+      
+  }]);
+
+//Camara Controller
+
+camaraControllers.controller('CamaraCtrl', ['$scope', '$http', '$cordovaCamera',
+  function ($scope, $http, $cordovaCamera) {
+      
+      $scope.takePhoto = function () {
+                  var options = {
+                    quality: 75,
+                    destinationType: Camera.DestinationType.DATA_URL,
+                    sourceType: Camera.PictureSourceType.CAMERA,
+                    allowEdit: true,
+                    encodingType: Camera.EncodingType.JPEG,
+                    targetWidth: 300,
+                    targetHeight: 300,
+                    popoverOptions: CameraPopoverOptions,
+                    saveToPhotoAlbum: false
+                };
+      }
       
   }]);
 

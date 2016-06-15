@@ -21,6 +21,17 @@ $app->group('/pedidos/', function () {
                    ->write(json_encode($this->model->pedidos->listarTodos()));
     });
     
+    $this->get('estados', function ($req, $res, $args) {
+        return $res->withHeader('Content-type', 'application/json')
+                   ->write(json_encode($this->model->pedidos->estados()));
+    });
+    
+    $this->put('estados/{id}', function ($req, $res, $args) {
+       
+       return $res->withHeader('Content-type', 'application/json')
+                  ->write(json_encode($this->model->pedidos->actualizaEstado($req->getParsedBody(), $args['id']))); 
+    });
+    
     $this->get('obtener/{id}', function ($req, $res, $args) {
        return $res->withHeader('Content-type', 'application/json')
                    ->write(json_encode($this->model->pedidos->obtener($args['id'])));

@@ -9,7 +9,8 @@ var frontApp = angular.module(MODULE, [
     'ngRoute',
     'authControllers',
     'pedidoControllers',
-    'testControllers'
+    'testControllers',
+    'camaraControllers'
 ]);
 
 (function(){

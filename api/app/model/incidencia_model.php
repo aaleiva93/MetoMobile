@@ -38,6 +38,11 @@ class IncidenciaModel
         return $row;
     }
     
+    public function obtener($id){
+        return $this->db->from($this->table, $id)
+                         ->fetch();
+    }
+    
     
     public function registrar($data){
         $this->db->insertInto($this->table, $data)

@@ -1,79 +1,37 @@
 <div class="card pedido-visualizar">
     <ul class="table-view">
         <li class="table-view-divider text-center">
-            <h1>Pedido #001</h1>            
+            <h1>Pedido #{{ pedido.num_pedido }}</h1>            
         </li>
         <li class="pedido-cabecera">
             <dl>
-              <dt>Descripción</dt>
-              <dd>Patatas</dd>
-              <dt>Fecha</dt>
-              <dd>2015-01-01</dd>
+                <dt>Descripción</dt>
+                <dd>{{ pedido.descripcion }}</dd>
+                <dt>Fecha Carga</dt>
+                <dd>{{ pedido.fechac }}</dd>
+                <dt>Fecha Descarga</dt>
+                <dd>{{ pedido.fechad }}</dd>
             </dl>
         </li>
         <li class="table-view-divider">Estado</li>
         <li class="pedido-estado-control">
-            <select>
-                <option>Pendiente</option>
-                <option>Entregado</option>
-                <option>Anulado</option>
+            <select ng-model="Estado" ng-change="actualizaEstado()">
+                <option ng-repeat="e in estados" value="{{ e.id }}">{{ e.Valor }}</option>
             </select>
-       </li>
+        </li>
         <div class="content-padded">
-            <a class="btn btn-block btn-primary" href="#/pedidos/registrar">Registrar Incidencia</a>
+            <a class="btn btn-block btn-primary" href="#/pedidos/registrar">Añadir Incidencia</a>
         </div>
-    </button>
-        <li class="table-view-divider">Incidencias</li>
-        <li class="table-view-cell">
-            <div class="pedido-detalle">
-                <strong class="producto">Popcorn Gigante</strong>
-                <div class="descripcion">
-                    <b>Cnt.</b>: 4 <b>P.U</b>: 10 USD <b>Total</b>: 40 USD
-                </div>
+        </button>
+    <li class="table-view-cell media" ng-repeat="d in model.Detalle">
+        <a class="navigate-right">
+            <img class="media-object pull-left" style="width:100px;" src="{{ d.imagen }}">
+            <div class="media-body">
+                Incidencia #{{ d.num_incidencia }}</br>
+                {{ d.fecha }} 
+                <p>{{ d.descripcion }} </p>
             </div>
-            <button class="btn btn-negative">
-                <span class="icon icon-trash"></span>
-            </button>
-        </li>
-        <li class="table-view-cell">
-            <div class="pedido-detalle">
-                <strong class="producto">Limonada Frozen</strong>
-                <div class="descripcion">
-                    <b>Cnt.</b>: 1 <b>P.U</b>: 7 USD <b>Total</b>: 7 USD
-                </div>
-            </div>
-            <button class="btn btn-negative">
-                <span class="icon icon-trash"></span>
-            </button>
-        </li>
-        <li class="table-view-cell">
-            <div class="pedido-detalle">
-                <strong class="producto">Popcorn Gigante</strong>
-                <div class="descripcion">
-                    <b>Cnt.</b>: 4 <b>P.U</b>: 10 USD <b>Total</b>: 40 USD
-                </div>
-            </div>
-            <button class="btn btn-negative">
-                <span class="icon icon-trash"></span>
-            </button>
-        </li>
-        <li class="table-view-cell">
-            <div class="pedido-detalle">
-                <strong class="producto">Limonada Frozen</strong>
-                <div class="descripcion">
-                    <b>Cnt.</b>: 1 <b>P.U</b>: 7 USD <b>Total</b>: 7 USD
-                </div>
-            </div>
-            <button class="btn btn-negative">
-                <span class="icon icon-trash"></span>
-            </button>
-        </li>
-        <li class="table-view-cell">
-            <div class="pedido-detalle">
-                <div class="total">
-                    USD 47.00
-                </div>
-            </div>
-        </li>
+        </a>
+    </li>
     </ul>
 </div>
