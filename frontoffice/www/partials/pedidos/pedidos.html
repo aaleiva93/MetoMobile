@@ -1,0 +1,23 @@
+<div class="user-dashboard">
+    <img src="assets/images/default-user.png" class="avatar" />
+    Bienvenido <b>{{ usuario }}</b>
+    <div class="clear"></div>
+</div>
+
+<div class="card">
+    <ul class="table-view">
+        <li class="table-view-cell" ng-repeat="m in model">
+            <a class="navigate-right" href="#/pedidos/visualizar/{{ m.id }}">
+                <span ng-if="m.estado_id == 0" class="pedido-estado pedido-estado-pendiente pull-left"></span>
+                <span ng-if="m.estado_id == 1" class="pedido-estado pedido-estado-finalizado pull-left"></span>
+                <span ng-if="m.estado_id == 2" class="pedido-estado pedido-estado-anulado pull-left"></span>
+                <b>Pedido #{{ m.num_pedido }} - {{ m.descripcion }}</b>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- Logout -->
+<div class="bar bar-standard bar-footer">
+  <a href="#/logout" class="btn btn-block btn-negative">Desconectarse</a>
+</div>
