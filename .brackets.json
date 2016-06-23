@@ -1,0 +1,5 @@
+{
+    "jscodehints.detectedExclusions": [
+        "C:/wamp64/www/appweb/frontoffice/platforms/android/build/intermediates/assets/debug/www/lib/ngCordova/dist/ng-cordova.min.js"
+    ]
+}

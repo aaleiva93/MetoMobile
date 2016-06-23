@@ -1,25 +1,22 @@
 <div class="content-padded">
-    <input type="text" placeholder="Numero Incidencia" />
-    <input type="text" placeholder="Descripción" />
-    <input type="text" placeholder="Fecha (AAAA-MM-DD)" />
+    <input type="text" placeholder="Numero Incidencia" ng-model="num_incidencia" />
+    <input type="text" placeholder="Descripción" ng-model="descripcion"/>
+    <input type="text" placeholder="Fecha (AAAA-MM-DD)" ng-model="fecha"/>
 
     <button ng-click="takePicture()" class="btn btn-default btn-block" type="button">
         Foto <span class="icon icon-plus"></span>
     </button>
 </div>
 
-<div>
-    <ul class="table-view">
-        <li class="table-view-cell media">
-            <img class="media-object pull-left" style="width:100px;" src="{{pictureUrl}}">
-            <div class="media-body">
-                Item 1
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore. Lorem ipsum dolor sit amet.</p>
-            </div>
-        </li>
-    </ul>
+<div align="center">
+
+    <img  src="{{pictureUrl}}" style="width:300px;" >
+
 </div>
 
 <div class="content-padded">
-    <a class="btn btn-block btn-primary" href="#/pedidos/registrar">Añadir</a>
+    <button class="btn btn-block btn-primary" type="button" ng-click="registraIncidencia()">Añadir</button>
 </div>
+
+
+

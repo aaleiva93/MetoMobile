@@ -65,10 +65,18 @@ pedidoControllers.controller('PedidosListadoCtrl', ['$scope', 'restApi', 'auth',
         }
   }]);
 
-pedidoControllers.controller('PedidosRegistrarCtrl', ['$scope', '$http','$cordovaCamera',
-  function ($scope, $http, $cordovaCamera) {
+pedidoControllers.controller('PedidosRegistrarCtrl', ['$scope', 'restApi', '$cordovaCamera', 'auth',  '$location', '$routeParams',
+  function ($scope, restApi, $cordovaCamera, auth, $location, $routeParams) {
       
-      $scope.pictureUrl = "http://placehold.it/300x300"; 
+    $scope.incidencia = {
+        id_pedido:'',
+        num_incidencia:'',
+        descripcion: '',
+        fecha: '',
+        imagen: '',
+    }; 
+      
+    $scope.pictureUrl = "http://placehold.it/300x300"; 
     
     $scope.takePicture = function(){
         var options = {
@@ -85,6 +93,38 @@ pedidoControllers.controller('PedidosRegistrarCtrl', ['$scope', '$http','$cordov
         
         });
     };
+    
+      
+    $scope.registraIncidencia = function () {
+        
+   
+        $scope.incidencia.descripcion = $scope.descripcion;
+        $scope.incidencia.fecha = $scope.fecha;
+        $scope.incidencia.num_incidencia = $scope.num_incidencia;
+        $scope.incidencia.id_pedido = $routeParams.id;
+        $scope.incidencia.imagen = $scope.pictureUrl;
+        console.log($scope.incidencia);
+        
+        restApi.call({
+                method: 'post',
+                url: 'incidencia/registrar',
+                data: $scope.incidencia,
+                response: function (r) {
+                    if(r.response){
+                        $location.path('/pedidos');
+                    }
+                },
+                error: function (r) {
+
+                },
+                validationError: function (r) {
+                    console.log(r);
+                }
+            });
+       
+    };
+      
+    
       
   }]);
 

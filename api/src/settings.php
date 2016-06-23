@@ -19,7 +19,7 @@ return [
         'connectionString' => [
             'dns'  => 'mysql:host=localhost;dbname=appweb;charset=utf8',
             'user' => 'root',
-            'pass' => ''
+            'pass' => 'palabra'
         ]
     ],
 ];

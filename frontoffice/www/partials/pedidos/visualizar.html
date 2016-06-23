@@ -20,18 +20,15 @@
             </select>
         </li>
         <div class="content-padded">
-            <a class="btn btn-block btn-primary" href="#/pedidos/registrar">Añadir Incidencia</a>
+            <a class="btn btn-block btn-primary" href="#/pedidos/registrar/{{ pedido.id }}">Añadir Incidencia</a>
         </div>
-        </button>
     <li class="table-view-cell media" ng-repeat="d in model.Detalle">
-        <a class="navigate-right">
             <img class="media-object pull-left" style="width:100px;" src="{{ d.imagen }}">
             <div class="media-body">
                 Incidencia #{{ d.num_incidencia }}</br>
                 {{ d.fecha }} 
                 <p>{{ d.descripcion }} </p>
             </div>
-        </a>
     </li>
     </ul>
 </div>

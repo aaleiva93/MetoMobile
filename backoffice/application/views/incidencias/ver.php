@@ -1,5 +1,6 @@
+<?php if(!empty($model->Detalle)): ?>
 <?php 
-    $pedido = '#' . $model->num_pedido;
+$pedido = '#' . $model->num_pedido;
 ?>
 <h1 class="page-header">
     Pedido <?php echo $pedido; ?>
@@ -19,6 +20,8 @@
         <dl class="well">
             <dt>Conductor</dt>
             <dd><?php echo $model->fullname; ?></dd>
+            <dt>Descripción</dt>
+            <dd><?php echo $model->descripcion; ?></dd>
             <dt>Estado</dt>
             <dd><?php echo $model->estado; ?></dd>
             <dt>Fecha Carga</dt>
@@ -28,18 +31,30 @@
         </dl>
     </div>
 </div>    
-   
-<div class="row">
-   <div class="col-xs-">
-        <ul class="list-group">
-            <?php foreach($model->Detalle as $d): ?>
-            <li class="list-group-item">
-                <?php echo $d->descripcion; ?> - <?php echo $d->fecha; ?> 
-                <?php if(!empty($d->imagen)): ?>
-                <img style="width:500px;" src="<?php echo $d->imagen; ?>"  alt="<?php echo $d->descripcion; ?>" />
-                <?php endif; ?>
-            </li>
-            <?php endforeach; ?>    
-        </ul>
-    </div>
-</div>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Imagen</th>
+            <th>Descripcion</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        <?php foreach($model->Detalle as $d): ?>
+
+
+        <?php if(!empty($d->imagen)): ?>
+        <tr>
+            <td><img style="width:500px;" src="<?php echo $d->imagen; ?>"  class="pull-left" alt="<?php echo $d->descripcion; ?>" /></td>
+            <td><?php echo $d->descripcion; ?></td>
+        </tr>    
+        <?php endif; ?>
+
+        <?php endforeach; ?>  
+
+
+    </tbody>
+</table>
+<?php endif; ?>

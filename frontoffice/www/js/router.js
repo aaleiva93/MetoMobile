@@ -14,7 +14,7 @@ frontApp.config(['$routeProvider',
         templateUrl: 'partials/pedidos/pedidos.html',
         controller: 'PedidosListadoCtrl'
       }).
-      when('/pedidos/registrar', {
+      when('/pedidos/registrar/:id', {
         templateUrl: 'partials/pedidos/registrar.html',
         controller: 'PedidosRegistrarCtrl'
       }).
